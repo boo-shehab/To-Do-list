@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-        template: './src/index.html',
+      template: './src/index.html',
     }),
   ],
   output: {
@@ -23,6 +23,13 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(svg|eot|woff|woff2|ttf)$/,
+        loader: 'file-loader',
+        Option: {
+          outputPath: 'fonts',
+        },
       },
     ],
   },

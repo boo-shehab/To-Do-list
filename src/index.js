@@ -1,13 +1,12 @@
-import _ from 'lodash';
 import './style.css';
+import ToDoList from './module/to-do-list.js';
 
-function component() {
-    const element = document.createElement('div');
-  
-  // Lodash, now imported by this script
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  
-    return element;
-  }
-  
-  document.body.appendChild(component());
+const listInsertInput = document.querySelector('input');
+const listInsertSubmit = document.querySelector('form');
+
+const list = new ToDoList();
+listInsertSubmit.addEventListener('submit', (ele) => {
+  ele.preventDefault();
+  list.add(listInsertInput.value);
+  listInsertInput.value = '';
+});

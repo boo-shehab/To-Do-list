@@ -1,0 +1,86 @@
+@import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.card {
+  position: absolute;
+  min-width: 250px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px 4px lightgrey;
+}
+
+.card-header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+
+.card-insert {
+  padding: 10px;
+  border-bottom: 1px solid gray;
+  display: flex;
+}
+
+input {
+  border: none;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+.card-insert button {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.box {
+  padding: 10px;
+  border-bottom: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  writing-mode: horizontal-tb !important;
+}
+
+.box input {
+  margin-left: 10px;
+}
+
+.box.active {
+  background-color: yellow;
+}
+
+.box svg.fa-trash-can {
+  display: none;
+}
+
+.box.active svg.fa-trash-can {
+  display: block;
+  cursor: pointer;
+}
+
+.box svg.fa-ellipsis-vertical {
+  cursor: n-resize;
+}
+
+.box.active svg.fa-ellipsis-vertical {
+  display: none;
+}
+
+.box .boxText {
+  width: 100%;
+  display: flex;
+}
+
+.card-footer {
+  padding: 10px;
+  text-align: center;
+  background: lightgray;
+}
