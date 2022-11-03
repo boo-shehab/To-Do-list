@@ -47,7 +47,7 @@ export default class {
     }
 
     // eslint-disable-next-line class-methods-use-this
-    addItem(itme) {
+    addItem(item) {
       const mainBox = document.createElement('div');
       mainBox.classList.add('box');
       mainBox.addEventListener('click', () => {
@@ -56,7 +56,7 @@ export default class {
       });
       const checkDiv = document.createElement('div');
       const check = document.createElement('svg');
-      if (itme.completed) {
+      if (item.completed) {
         check.classList.add('fa-regular');
         check.classList.add('fa-square-check');
       } else {
@@ -65,7 +65,7 @@ export default class {
       }
       checkDiv.addEventListener('click', () => {
         this.list.forEach((ele) => {
-          if (ele.index === itme.index) ele.completed = true;
+          if (ele.index === item.index) ele.completed = true;
         });
         this.storage.sit('to-do-list', JSON.stringify(this.list));
         this.listView();
@@ -75,10 +75,10 @@ export default class {
       checkDiv.appendChild(check);
       boxText.appendChild(checkDiv);
       const description = document.createElement('input');
-      description.value = itme.description;
+      description.value = item.description;
       description.addEventListener('input', () => {
         this.list.forEach((ele) => {
-          if (ele.index === itme.index) ele.description = description.value;
+          if (ele.index === item.index) ele.description = description.value;
         });
         this.storage.sit('to-do-list', JSON.stringify(this.list));
       });
@@ -91,7 +91,7 @@ export default class {
       mainBox.appendChild(dots);
       const deletIcon = document.createElement('i');
       savgDiv.addEventListener('click', () => {
-        this.remove(itme.index);
+        this.remove(item.index);
       });
       deletIcon.classList.add('fa-solid');
       deletIcon.classList.add('fa-trash-can');
