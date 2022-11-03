@@ -84,3 +84,8 @@ input {
   text-align: center;
   background: lightgray;
 }
+
+.card-footer span:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

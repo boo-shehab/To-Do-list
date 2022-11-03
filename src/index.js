@@ -3,6 +3,7 @@ import ToDoList from './module/to-do-list.js';
 
 const listInsertInput = document.querySelector('input');
 const listInsertSubmit = document.querySelector('form');
+const removeAll = document.querySelector('.card-footer span');
 
 const list = new ToDoList();
 listInsertSubmit.addEventListener('submit', (ele) => {
@@ -10,3 +11,5 @@ listInsertSubmit.addEventListener('submit', (ele) => {
   list.add(listInsertInput.value);
   listInsertInput.value = '';
 });
+
+removeAll.addEventListener('click', () => list.removeAll());
