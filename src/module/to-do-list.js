@@ -33,6 +33,15 @@ export default class {
 
     remove(id) {
       this.list = this.list.filter((ele) => ele.index !== id);
+      for (let i = 0; i < this.list.length; i += 1) {
+        this.list[i].index = i + 1;
+      }
+      this.storage.sit('to-do-list', JSON.stringify(this.list));
+      this.listView();
+    }
+
+    removeAll() {
+      this.list = [];
       this.storage.sit('to-do-list', JSON.stringify(this.list));
       this.listView();
     }
@@ -45,7 +54,8 @@ export default class {
         document.querySelectorAll('.box').forEach((ele) => ele.classList.remove('active'));
         mainBox.classList.add('active');
       });
-      const check = document.createElement('i');
+      const checkDiv = document.createElement('div');
+      const check = document.createElement('svg');
       if (itme.completed) {
         check.classList.add('fa-regular');
         check.classList.add('fa-square-check');
@@ -53,11 +63,25 @@ export default class {
         check.classList.add('fa-regular');
         check.classList.add('fa-square');
       }
+      checkDiv.addEventListener('click', () => {
+        this.list.forEach((ele) => {
+          if (ele.index === itme.index) ele.completed = true;
+        });
+        this.storage.sit('to-do-list', JSON.stringify(this.list));
+        this.listView();
+      });
       const boxText = document.createElement('div');
       boxText.classList.add('boxText');
-      boxText.appendChild(check);
+      checkDiv.appendChild(check);
+      boxText.appendChild(checkDiv);
       const description = document.createElement('input');
       description.value = itme.description;
+      description.addEventListener('input', () => {
+        this.list.forEach((ele) => {
+          if (ele.index === itme.index) ele.description = description.value;
+        });
+        this.storage.sit('to-do-list', JSON.stringify(this.list));
+      });
       boxText.appendChild(description);
       mainBox.appendChild(boxText);
       const savgDiv = document.createElement('div');
