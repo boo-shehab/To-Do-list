@@ -12,7 +12,7 @@ This is an example of how you may give instructions on setting up your project l
 
 ## Live Demo 
 
-[Lie Demo](https://boo-shehab.github.io/To-Do-list/dist/)
+[Live Demo](https://boo-shehab.github.io/To-Do-list/dist/)
 
 To get a local copy up and running follow these simple example steps.
 
