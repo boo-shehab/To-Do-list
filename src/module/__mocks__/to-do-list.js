@@ -1,6 +1,8 @@
-import LocalStorageList from './data-localstorage.js';
-import '../../node_modules/@fortawesome/fontawesome-free/js/all.min.js';
-import StatusUpdates from './status-updates.js';
+import LocalStorageList from '../data-localstorage.js';
+import '../../../node_modules/@fortawesome/fontawesome-free/js/all.min.js';
+// import StatusUpdates from '../status-updates.js';
+
+document.body.innerHTML = '<div class=\'card-list\'> </div>';
 
 const listContaner = document.querySelector('.card-list');
 
@@ -43,8 +45,11 @@ export default class {
       return this.list;
     }
 
-    removeAll() {
+    removeChecked() {
       this.list = this.list.filter((ele) => !ele.completed);
+      for (let i = 0; i < this.list.length; i += 1) {
+        this.list[i].index = i + 1;
+      }
       this.storage.sit('to-do-list', JSON.stringify(this.list));
       this.listView();
     }
@@ -66,7 +71,7 @@ export default class {
         check.classList.add('fa-square');
       }
       checkDiv.addEventListener('click', () => {
-        this.list = StatusUpdates(item.index);
+        this.updatesCheck(item);
         this.listView();
       });
       const boxText = document.createElement('div');
@@ -109,5 +114,13 @@ export default class {
       for (let i = 0; i < this.list.length; i += 1) {
         this.addItem(this.list[i]);
       }
+    }
+
+    updatesCheck(index) {
+      this.list.forEach((ele) => {
+        if (ele.index === index) ele.completed = !ele.completed;
+      });
+      this.storage.sit('to-do-list', JSON.stringify(this.list));
+      return this.list;
     }
 }
